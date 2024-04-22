@@ -86,7 +86,7 @@ function getLearnerData(course, ag, submissions) {
     // Initialize learners object
     let learners = {};
     // Iterate over each submission
-    for(submission in submissions){
+    for(let submission of submissions){
         // Extrate learnerId, assignmentId and score from learners Submission
         let learnerId = submission.learner_id;
         let assignmentId = submission.assignment_id;
@@ -101,7 +101,7 @@ function getLearnerData(course, ag, submissions) {
         }
 
         // check and deduct 10% if submission is late
-        if(new Date(submission.submission.submitted_at) > new Date(assignment.due_at)){
+        if(new Date(submissions.submission.submitted_at) > new Date(assignment.due_at)){
             score -= score * 0.1;
         }
 
