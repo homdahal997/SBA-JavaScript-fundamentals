@@ -86,6 +86,11 @@ function initializeLearner(learnerId) {
     };
 }
 
+// function to validate due date
+function isFutureDate(date) {
+    return new Date(date) > new Date();
+}
+
 
 function getLearnerData(course, ag, submissions) {
     // Check if course id matches with assignment group'S course id
@@ -106,7 +111,7 @@ function getLearnerData(course, ag, submissions) {
         let assignment = ag.assignments.find((a) => a.id === assignmentId); // check if id prop of obj 'a' is equal to assignmentId
 
         // check if assignment due date is a future date, if so ignore it.
-        if (new Date(assignment.due_at) > new (Date())) {
+        if (isFutureDate(assignment.due_at)) {
             continue;
         }
 
@@ -137,8 +142,8 @@ function getLearnerData(course, ag, submissions) {
         // Add point possible for current assignment to totalPossible.
         learners[learnerId].totalPossible += pointsPossible;
 
-        // Individual score of learner in each assignment
-        learners[learnerId].assignments[assignmentId] = adjustedScore / pointsPossible;
+        // Individual score for learner in each assignment
+        learners[learnerId].assignments[assignmentId] = score / pointsPossible;
 
 
 
