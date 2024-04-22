@@ -121,6 +121,16 @@ function getLearnerData(course, ag, submissions) {
             learners[learnerId] = initializeLearner(learnerId);
         }
 
+        // Convert the points_possible to number data .
+        let pointsPossible = Number(assignment.points_possible);
+
+        // Check if possible point is zero.
+        if (isNaN(pointsPossible) || pointsPossible === 0) {
+            // If it is, log show error and continue.
+            console.error("Invalid points_possible value");
+            continue;
+        }
+
 
 
     }
