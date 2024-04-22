@@ -116,9 +116,9 @@ function getLearnerData(course, ag, submissions) {
         }
 
         // check and deduct 10% if submission is late
-        if (new Date(submissions.submission.submitted_at) > new Date(assignment.due_at)) {
-            score -= score * 0.1;
-        }
+        // if (new Date(submissions.submission.submitted_at) > new Date(assignment.due_at)) {
+        //     score -= score * 0.1;
+        // }
 
         // If learner with the given learner Id not present,
         // initialize a new learner object and add to learners object.
