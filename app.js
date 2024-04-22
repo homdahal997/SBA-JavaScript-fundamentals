@@ -83,6 +83,20 @@ function getLearnerData(course, ag, submissions) {
         console.error("Mismatching course_id in AssignmentGroup");
         return [];
     }
+    // Initialize learners object
+    let learners = {};
+    // Iterate over each submission
+    for(submission in submissions){
+        // Extrate learnerId, assignmentId and score from learners Submission
+        let learnerId = submission.learner_id;
+        let assignmentId = submission.assignment_id;
+        let score = submission.submission.score;
+
+         // Find the corresponding assignment in the assignment group
+        let assignment = ag.assignments.find((a) => a.id === assignmentId); // check if id prop of a obj is equal to assignmentId
+        
+
+    }
     // here, we would process this data to achieve the desired result.
     // const result = [
     //     {
