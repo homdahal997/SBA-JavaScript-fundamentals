@@ -124,12 +124,21 @@ function getLearnerData(course, ag, submissions) {
         // Convert the points_possible to number data .
         let pointsPossible = Number(assignment.points_possible);
 
-        // Check if possible point is zero.
+        // Check if possible point is zero or NaN.
         if (isNaN(pointsPossible) || pointsPossible === 0) {
             // If it is, log show error and continue.
             console.error("Invalid points_possible value");
             continue;
         }
+
+        // get total score for learner with given learnerId.
+        learners[learnerId].totalScore += score;
+
+        // Add point possible for current assignment to totalPossible.
+        learners[learnerId].totalPossible += pointsPossible;
+
+        // Individual score of learner in each assignment
+        learners[learnerId].assignments[assignmentId] = adjustedScore / pointsPossible;
 
 
 
