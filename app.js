@@ -108,7 +108,7 @@ function adjustScore(score, submissionDate, dueDate) {
     // If the submission date is not later than the due date, return the original score
     return score;
 }
-
+// main function to process learners submissions
 function getLearnerData(course, ag, submissions) {
     // Check if course id matches with assignment group'S course id
     try {
