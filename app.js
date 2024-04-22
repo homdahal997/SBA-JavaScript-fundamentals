@@ -144,6 +144,21 @@ function getLearnerData(course, ag, submissions) {
 
         // Individual score for learner in each assignment
         learners[learnerId].assignments[assignmentId] = score / pointsPossible;
+        
+        // Map over the values of learners object
+        return Object.values(learners).map((learner) => {
+            // validate possible point if zero
+            if (learner.totalPossible === 0) {
+                console.error("Total possible points for a learner is zero");
+                // in the case of zero, set larner avg to 0
+                learner.avg = 0;
+            } else {
+                // if not calculat lerners average
+                learner.avg = learner.totalScore / learner.totalPossible;
+            }
+            // return 
+            return learner;
+        });
 
 
 
