@@ -107,7 +107,7 @@ function getLearnerData(course, ag, submissions) {
 
 
 
-    }
+    }// end getLearnerData Function
     // here, we would process this data to achieve the desired result.
     // const result = [
     //     {
