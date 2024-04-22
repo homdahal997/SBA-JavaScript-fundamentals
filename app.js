@@ -14,7 +14,7 @@ const AssignmentGroup = {
         {
             id: 1,
             name: "Declare a Variable",
-            due_at: "2023-01-25", // If this is smaller than the submitted_at date, deduct 10%
+            due_at: "2023-01-25", 
             points_possible: 50,
         },
         {
@@ -38,7 +38,7 @@ const LearnerSubmissions = [
         learner_id: 125,
         assignment_id: 1,
         submission: {
-            submitted_at: "2023-01-25", // This should be 26 or higher to deduct 10%
+            submitted_at: "2023-01-25", // This should be 26 or higher to deduct 10%- try changing
             score: 47,
         },
     },
@@ -120,7 +120,7 @@ function getLearnerData(course, ag, submissions) {
         let learners = {};
         // Iterate over each submission
         for (let submission of submissions) {
-            // Extrate learnerId, assignmentId and score from learners Submission
+            // Extract learnerId, assignmentId and score from learners Submission
             let learnerId = submission.learner_id;
             let assignmentId = submission.assignment_id;
             let score = submission.submission.score;
