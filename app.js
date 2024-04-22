@@ -78,6 +78,11 @@ const LearnerSubmissions = [
 
 
 function getLearnerData(course, ag, submissions) {
+    // Check if course id matches with assignment group course id
+    if (course.id !== ag.course_id) {
+        console.error("Mismatching course_id in AssignmentGroup");
+        return [];
+    }
     // here, we would process this data to achieve the desired result.
     // const result = [
     //     {
