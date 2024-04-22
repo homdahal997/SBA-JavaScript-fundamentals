@@ -86,11 +86,28 @@ function initializeLearner(learnerId) {
     };
 }
 
+
 // function to validate due date
 function isFutureDate(date) {
     return new Date(date) > new Date();
 }
+function adjustScore(score, submissionDate, dueDate) {
+    // convert score to number
+    score = Number(score);
+    // If the score is not a number, log an error and return 0
+    if (isNaN(score)) {
+        console.error("Score is not a number");
+        return 0;
+    }
 
+    // If the submission date is later than the due date, deduct 10% from the score
+    if (new Date(submissionDate) > new Date(dueDate)) {
+        return score - score * 0.1;
+    }
+
+    // If the submission date is not later than the due date, return the original score
+    return score;
+}
 
 function getLearnerData(course, ag, submissions) {
     // Check if course id matches with assignment group'S course id
@@ -115,10 +132,8 @@ function getLearnerData(course, ag, submissions) {
             continue;
         }
 
-        // check and deduct 10% if submission is late
-        // if (new Date(submissions.submission.submitted_at) > new Date(assignment.due_at)) {
-        //     score -= score * 0.1;
-        // }
+        // Calculate the adjusted score for the assignment. The score is adjusted based on the submission date and the due date of the assignment.
+        let adjustedScore = adjustScore(score, submission.submission.submitted_at, assignment.due_at);
 
         // If learner with the given learner Id not present,
         // initialize a new learner object and add to learners object.
@@ -137,14 +152,14 @@ function getLearnerData(course, ag, submissions) {
         }
 
         // get total score for learner with given learnerId.
-        learners[learnerId].totalScore += score;
+        learners[learnerId].totalScore += adjustedScore;
 
         // Add point possible for current assignment to totalPossible.
         learners[learnerId].totalPossible += pointsPossible;
 
         // Individual score for learner in each assignment
         learners[learnerId].assignments[assignmentId] = score / pointsPossible;
-        
+
         // Map over the values of learners object
         return Object.values(learners).map((learner) => {
             // validate possible point if zero
@@ -159,27 +174,7 @@ function getLearnerData(course, ag, submissions) {
             // return 
             return learner;
         });
-
-
-
     }
-    // here, we would process this data to achieve the desired result.
-    // const result = [
-    //     {
-    //         id: 125,
-    //         avg: 0.985, // (47 + 150) / (50 + 150)
-    //         1: 0.94, // 47 / 50
-    //         2: 1.0 // 150 / 150
-    //     },
-    //     {
-    //         id: 132,
-    //         avg: 0.82, // (39 + 125) / (50 + 150)
-    //         1: 0.78, // 39 / 50
-    //         2: 0.833 // late: (140 - 15) / 150
-    //     }
-    // ];
-
-    // return result;
 }// end getLearnerData Function
 
 const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
