@@ -78,7 +78,7 @@ const LearnerSubmissions = [
 
 
 function getLearnerData(course, ag, submissions) {
-    // Check if course id matches with assignment group course id
+    // Check if course id matches with assignment group'S course id
     if (course.id !== ag.course_id) {
         console.error("Mismatching course_id in AssignmentGroup");
         return [];
@@ -93,8 +93,8 @@ function getLearnerData(course, ag, submissions) {
         let score = submission.submission.score;
 
          // Find the corresponding assignment in the assignment group
-        let assignment = ag.assignments.find((a) => a.id === assignmentId); // check if id prop of a obj is equal to assignmentId
-        
+        let assignment = ag.assignments.find((a) => a.id === assignmentId); // check if id prop of obj 'a' is equal to assignmentId
+
 
     }
     // here, we would process this data to achieve the desired result.
