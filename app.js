@@ -100,6 +100,11 @@ function getLearnerData(course, ag, submissions) {
             continue;
         }
 
+        // check and deduct 10% if submission is late
+        if(new Date(submission.submission.submitted_at) > new Date(assignment.due_at)){
+            score -= score * 0.1;
+        }
+
 
     }
     // here, we would process this data to achieve the desired result.
