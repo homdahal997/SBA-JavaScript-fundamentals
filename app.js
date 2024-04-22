@@ -95,6 +95,11 @@ function getLearnerData(course, ag, submissions) {
          // Find the corresponding assignment in the assignment group
         let assignment = ag.assignments.find((a) => a.id === assignmentId); // check if id prop of obj 'a' is equal to assignmentId
 
+        // check if assignment due date is a future date, if so ignore it.
+        if(new Date(assignment.due_at) > new(Date())){
+            continue;
+        }
+
 
     }
     // here, we would process this data to achieve the desired result.
