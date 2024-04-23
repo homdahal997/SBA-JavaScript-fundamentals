@@ -13,3 +13,6 @@ This app facilitates the assessment of learners' understanding of fundamental Ja
 
 ## Usage 
 -Any one can clone or for this git repo to learn different concepts like use of let and const, creating functions, using object to manupulate data and many more. 
+
+## Initial plant for this project
+![Initial Plan](308SBA_Planjs.png)
